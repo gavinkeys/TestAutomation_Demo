@@ -1,12 +1,20 @@
 package git.gavinkeys.testautomation_demo.pages;
 
 import git.gavinkeys.testautomation_demo.cucumber.DriverManager;
+import git.gavinkeys.testautomation_demo.utils.LoggerUtil;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class LoginPage extends BasePage {
 
+    private static final Logger LOGGER = LoggerUtil.getLogger(HomePage.class);
+
+    // Constructors
     public LoginPage(DriverManager driverManager) {
         super(driverManager);
     }
@@ -20,6 +28,8 @@ public class LoginPage extends BasePage {
     private WebElement loginButton;
     @FindBy(how = How.CLASS_NAME, using = "login_logo")
     private WebElement homePageLogo;
+    @FindBy(how = How.CSS, using = ".error-message-container > h3:nth-child(1)")
+    private WebElement loginErrorMessage;
 
     // Page Actions
 
@@ -29,7 +39,19 @@ public class LoginPage extends BasePage {
      * @return true if the login page logo is displayed, false otherwise.
      */
     public boolean isLoginPageVisible() {
-        return homePageLogo.isDisplayed();
+        try {
+            boolean isDisplayed = homePageLogo.isDisplayed();
+            if (isDisplayed) {
+                LOGGER.log(Level.INFO, "Login page logo is displayed.");
+            } else {
+                LOGGER.log(Level.INFO, "Login page logo is not displayed.");
+            }
+            return isDisplayed;
+        } catch (NoSuchElementException e) {
+            // Log the error
+            LOGGER.log(Level.SEVERE, "Error checking login page visibility: " + e.getMessage(), e);
+            return false;
+        }
     }
 
     /**
@@ -38,8 +60,12 @@ public class LoginPage extends BasePage {
      * @param username The username to enter.
      */
     public void enterUsername(String username) {
-        waitForVisibility(usernameInput);
-        usernameInput.sendKeys(username);
+        try {
+            waitForVisibility(usernameInput);
+            usernameInput.sendKeys(username);
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "Error entering username: " + e.getMessage(), e);
+        }
     }
 
     /**
@@ -48,16 +74,24 @@ public class LoginPage extends BasePage {
      * @param password The password to enter.
      */
     public void enterPassword(String password) {
-        waitForVisibility(passwordInput);
-        passwordInput.sendKeys(password);
+        try {
+            waitForVisibility(passwordInput);
+            passwordInput.sendKeys(password);
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "Error entering password: " + e.getMessage(), e);
+        }
     }
 
     /**
      * Clicks the login button.
      */
     public void clickLogin() {
-        waitForClickable(loginButton);
-        loginButton.click();
+        try {
+            waitForClickable(loginButton);
+            loginButton.click();
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "Error clicking login button: " + e.getMessage(), e);
+        }
     }
 
     /**
@@ -70,5 +104,14 @@ public class LoginPage extends BasePage {
         enterUsername(username);
         enterPassword(password);
         clickLogin();
+    }
+
+    /**
+     * Gets the WebElement representing the login error message.
+     *
+     * @return The WebElement representing the login error message.
+     */
+    public WebElement getErrorMessageElement() {
+        return loginErrorMessage;
     }
 }
