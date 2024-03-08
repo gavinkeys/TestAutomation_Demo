@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = {"src/test/resources/features/"}, // Path to feature files
         glue = {"git.gavinkeys.testautomation_demo.steps", "git.gavinkeys.testautomation_demo.cucumber"},
-        plugin = {"pretty", "html:target/cucumber-reports"}, // Specify the plugin for generating HTML reports
+        plugin = {"pretty", "html:reports/cucumber-reports.html"}, // Specify the plugin for generating HTML reports
         tags = "@login" // Specify the tags to include/exclude scenarios
 )
 public class TestRunner {

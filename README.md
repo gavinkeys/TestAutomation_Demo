@@ -84,6 +84,9 @@ mvn clean test -Dbrowser=firefox
 mvn clean test -Dbrowser=chrome -Dcucumber.filter.tags="@HappyPath or @EmptyCredentials"
 ```
 
+# 4. Generate Cucumber Reports
+ HTML test reports are generated and stored in the root/reports folder
+
 ## Getting Started
 
 1. Clone the repository.
