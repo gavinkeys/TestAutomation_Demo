@@ -16,27 +16,38 @@ This project is a test automation framework for web applications using Java, Sel
 - **Dependency Injection:** Utilizes PicoContainer for dependency injection.
 - **Error Handling:** Includes error handling in certain methods for robustness.
 
-# Running Tests
-## Prerequisites
+## Running the Tests
 
-- Java 21 or later
-- Maven
-- ChromeDriver (for Chrome) and GeckoDriver (for Firefox) executable in the project directory.
+### Prerequisites
 
-### Command Line Execution
+Make sure you have the following installed on your machine:
 
-To run all tests using Maven, execute the following command in the project root directory:
+- [Java Development Kit (JDK)](https://www.oracle.com/java/technologies/javase-downloads.html) (version 21 or later)
+- [Maven](https://maven.apache.org/download.cgi)
 
+### Setup Steps
+
+# 1. Clone the Repository:
+git clone https://github.com/gavinkeys/TestAutomation_Demo.git
+
+# 2. Run Tests:
+### For Chrome:
 ```bash
 mvn clean test -Dbrowser=chrome
 ```
 
-To run specific scenarios execute the following command in the project root directory (replace tags as required from login.feature file):
+### For Firefox:
 ```bash
-mvn clean test -Dbrowser=chrome -Dcucumber.filter.tags="@HappyPath or @EmptyCredentials" 
+mvn clean test -Dbrowser=firefox
 ```
 
-Replace chrome with firefox to determine which browser will be used.
+# 3. Optional: Run Specific Tags:
+ To run specific tags, use the `-Dcucumber.filter.tags` option:
+
+ For example, to run tests with tags "@HappyPath or @EmptyCredentials":
+```bash
+mvn clean test -Dbrowser=chrome -Dcucumber.filter.tags="@HappyPath or @EmptyCredentials"
+```
 
 ## Getting Started
 
