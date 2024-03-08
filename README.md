@@ -24,13 +24,48 @@ Make sure you have the following installed on your machine:
 
 - [Java Development Kit (JDK)](https://www.oracle.com/java/technologies/javase-downloads.html) (version 21 or later)
 - [Maven](https://maven.apache.org/download.cgi)
+- IDE [Built using Intellij community edition](https://www.jetbrains.com/idea/download/?fromIDE=&section=mac)
 
-### Setup Steps
+## Installation
+### Windows
 
-# 1. Clone the Repository:
+#### JDK:
+   1. Download the JDK from the Oracle website.
+   2. Run the installer and follow the instructions to install Java.
+   3. Set the JAVA_HOME environment variable to the path where the JDK is installed.
+
+#### Maven:
+   1. Download the binary zip archive from the Maven download page.
+   2. Extract the archive to your desired location.
+   3. Add the bin directory of the created directory to the PATH environment variable.
+
+### macOS
+
+#### JDK:
+   1. Download the JDK from the Oracle website.
+   2. Open the downloaded dmg file and follow the instructions to install Java.
+
+#### Maven:
+   1. Maven can be installed using Homebrew. If you don’t have Homebrew installed, you can install it from the Homebrew website.
+   2. Once Homebrew is installed, you can install Maven by running brew install maven in the terminal.
+
+### Linux
+
+#### JDK:
+   1. Download the JDK from the Oracle website.
+   2. Extract the tar.gz file to your desired location.
+   3. Set the JAVA_HOME environment variable to the path where the JDK is installed.
+
+#### Maven:
+   1. Maven can be installed using the package manager for your specific Linux distribution. For example, on Ubuntu, you can install Maven by running sudo apt install maven in the terminal.
+
+
+# Setup Steps
+
+## 1. Clone the Repository:
 git clone https://github.com/gavinkeys/TestAutomation_Demo.git
 
-# 2. Run Tests:
+## 2. Run Tests:
 ### For Chrome:
 ```bash
 mvn clean test -Dbrowser=chrome
